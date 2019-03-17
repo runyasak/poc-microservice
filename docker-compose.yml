@@ -1,0 +1,25 @@
+version: "3"
+services:
+  poc-api:
+    image: node:alpine
+    volumes:
+      - ./poc-api:/usr/src/app
+    working_dir: /usr/src/app
+    ports:
+      - 8007:8007
+    networks:
+      - poc-network
+    command: npm run start:dev
+  poc-product-service:
+    image: node:alpine
+    volumes:
+      - ./poc-product-service:/usr/src/app
+    working_dir: /usr/src/app
+    ports:
+      - 9000:9000
+    networks:
+      - poc-network
+    command: npm run start:dev
+networks:
+  poc-network:
+    driver: "bridge"
