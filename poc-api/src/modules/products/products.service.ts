@@ -1,15 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Client, ClientProxy, Transport } from '@nestjs/microservices';
-
-const PRODUCTS_PORT = 9000;
+import { PRODUCT_PORT, PRODUCT_HOST } from '../../../global-config'
 
 @Injectable()
 export class ProductsService {
   @Client({
     transport: Transport.TCP,
     options: {
-      host: '172.19.0.1',
-      port: PRODUCTS_PORT,
+      host: PRODUCT_HOST,
+      port: PRODUCT_PORT,
     },
   })
   client: ClientProxy;
